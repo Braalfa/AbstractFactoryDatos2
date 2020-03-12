@@ -2,6 +2,9 @@
 #include <iostream>
 #include <string>
 
+/**
+ * Abstract Product
+ */
 class School
 {
 protected:
@@ -9,28 +12,48 @@ protected:
     int capacity;
     std::string type;
 
+    /***
+    *   Constructor for School
+    * @param givenCapacity Capacity of the school
+    * @param givenAvgGrade Average grade of the students of the school
+    * @param givenType Type of school
+    */
     School(int givenCapacity, int givenAvgGrade, std::string givenType )
             : capacity(givenCapacity), avgGrade(givenAvgGrade), type(givenType)
     {}
 
 
 public:
+    /**
+     * Returns average grade on the school
+     * @return average grade of the students
+     */
     int getAvgGrade()
     {
         return avgGrade;
     }
-
+    /**
+    * Returns maximun student capacity
+    * @return Maximun student capacity
+    */
     int getCapacity()
     {
         return capacity;
     }
 
+    /**
+     * Returns type of the school
+     * @return Type of the school
+     */
     std::string getType()
     {
         return type;
     }
 };
 
+/**
+ * Concrete Science HighSchool product
+ */
 class ScienceHighSchool : public School
 {
 public:
@@ -39,6 +62,9 @@ public:
     {}
 };
 
+/**
+ * Concrete Humanities HighSchool product
+ */
 class HumanitiesHighSchool : public School
 {
 public:
@@ -47,6 +73,9 @@ public:
     {}
 };
 
+/**
+ * Concrete Private HighSchool product
+ */
 class PrivateHighSchool : public School
 {
 public:
@@ -55,7 +84,9 @@ public:
     {}
 };
 
-
+/**
+ * Concrete Private Primary product
+ */
 class PrivatePrimarySchool : public School
 {
 public:
@@ -64,6 +95,9 @@ public:
     {}
 };
 
+/**
+ * Concrete Science Primary product
+ */
 class SciencePrimarySchool : public School
 {
 public:
@@ -72,6 +106,9 @@ public:
     {}
 };
 
+/**
+ * Concrete Humanities Primary product
+ */
 class HumanitiesPrimarySchool : public School
 {
 public:
@@ -82,7 +119,9 @@ public:
 
 
 
-
+/**
+ * Abstract Factory
+ */
 class SchoolFactory
 {
 public:
@@ -92,6 +131,9 @@ public:
 
 };
 
+/**
+ * Concrete HighSchool Factory
+ */
 class HighSchoolFactory : public SchoolFactory
 {
 public:
@@ -111,6 +153,9 @@ public:
     }
 };
 
+/**
+ * Concrete Primary School Factory
+ */
 class PrimarySchoolFactory : public SchoolFactory
 {
 public:
@@ -130,6 +175,10 @@ public:
     }
 };
 
+/**
+ * Ask user to specify the type of factory and of school wanted, then creates it and shows its properties.
+ * @return
+ */
 int main()
 {
     SchoolFactory* factory = 0;
