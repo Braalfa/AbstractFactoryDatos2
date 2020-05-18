@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/bryan/CLionProjects/AbstractFActoryExample/main.cpp
+/home/bryan/CLionProjects/AbstractFactoryDatos2/main.cpp
 iostream
 -
 string

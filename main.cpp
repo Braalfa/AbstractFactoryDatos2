@@ -3,7 +3,9 @@
 #include <string>
 
 /**
- * Abstract Product
+ * Abstract class used as parent for the three Abstract Products
+ * but is not part of the pattern, and is used because of being useful
+ * on this particular example
  */
 class School
 {
@@ -51,69 +53,104 @@ public:
     }
 };
 
+
+/**
+ * Abstract  Science School product
+ */
+class ScienceSchool : public School
+{
+public:
+    ScienceSchool(int givenCapacity, std::string type)
+            : School(givenCapacity, 95, type)
+    {}
+};
+
+/**
+ * Abstract Humanities School product
+ */
+class HumanitiesSchool : public School
+{
+public:
+    HumanitiesSchool(int givenCapacity, std::string type)
+            : School(givenCapacity, 90, type)
+    {}
+};
+
+/**
+ * Abstract  Primary School product
+ */
+class PrivateSchool : public School
+{
+public:
+    PrivateSchool(int givenCapacity, std::string type)
+            : School(givenCapacity, 93, type)
+    {}
+};
+
+
 /**
  * Concrete Science HighSchool product
  */
-class ScienceHighSchool : public School
+class ScienceHighSchool : public ScienceSchool
 {
 public:
     ScienceHighSchool()
-            : School(60, 95, "Science HighSchool")
+            : ScienceSchool(60, "Science High School")
     {}
 };
 
 /**
  * Concrete Humanities HighSchool product
  */
-class HumanitiesHighSchool : public School
+class HumanitiesHighSchool : public HumanitiesSchool
 {
 public:
     HumanitiesHighSchool()
-            : School(62, 90, "Humanities HighSchool")
+            : HumanitiesSchool(62, "Humanities HighSchool")
     {}
 };
 
 /**
  * Concrete Private HighSchool product
  */
-class PrivateHighSchool : public School
+class PrivateHighSchool : public PrivateSchool
 {
 public:
     PrivateHighSchool()
-            : School(100, 85, "Private HighSchool")
+            : PrivateSchool(200, "Private HighSchool")
     {}
 };
 
 /**
  * Concrete Private Primary product
  */
-class PrivatePrimarySchool : public School
+class PrivatePrimarySchool : public PrivateSchool
 {
 public:
     PrivatePrimarySchool()
-            : School(102, 93, "Private Primary School")
+            : PrivateSchool(210, "Private Primary School")
     {}
 };
 
 /**
  * Concrete Science Primary product
  */
-class SciencePrimarySchool : public School
+class SciencePrimarySchool : public ScienceSchool
 {
 public:
     SciencePrimarySchool()
-            : School(200, 97, "Science Primary HighSchool")
+            : ScienceSchool(200, "Science Primary School")
     {}
 };
 
 /**
  * Concrete Humanities Primary product
  */
-class HumanitiesPrimarySchool : public School
+class HumanitiesPrimarySchool : public HumanitiesSchool
 {
 public:
     HumanitiesPrimarySchool()
-            : School(300, 95, "Humanities Primary School")
+            : HumanitiesSchool(300, "Humanities Primary School")
     {}
 };
 
@@ -182,7 +219,7 @@ public:
 int main()
 {
     SchoolFactory* factory = 0;
-    std::string message="Which one do you want?\n1.HighSchool\n2.PrimarySchool";
+    std::string message="Which one do you want?\n1.HighSchool\n2.PrimarySchool\n";
     std::cout << message;
     std::string answer;
     std::cin >> answer;
@@ -208,7 +245,7 @@ int main()
         }
     }
 
-    message="Which one do you want?\n1.ScienceSchool\n2.HumanitiesSchool\n3.PrivateSchool";
+    message="Which one do you want?\n1.ScienceSchool\n2.HumanitiesSchool\n3.PrivateSchool\n";
     std::cout << message;
     std::cin >> answer;
 
@@ -238,7 +275,7 @@ int main()
         }
     }
 
-    std::cout<<"You choose a(n)"<<school->getType()<<"\n";
+    std::cout<<"You choose a(n) "<<school->getType()<<"\n";
     std::cout<<"Capacity: "<<school->getCapacity()<<"\n";
     std::cout<<"Avg Grades: "<<school->getAvgGrade();
 }
